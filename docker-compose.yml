@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: beginners_course
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5431:5432
