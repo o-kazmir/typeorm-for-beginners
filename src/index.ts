@@ -1,19 +1,20 @@
 import 'reflect-metadata';
 import { AppDataSource } from './db';
-import { User } from './entities/user.entity';
 import { Post } from './entities/post.entity';
+import { Tag } from './entities/tag.entity';
 
 AppDataSource.initialize().then(async () => {
-  const u = new User();
+  const tag1 = new Tag();
+  tag1.name = 'подорожі';
 
-  u.name = 'Test user';
-  u.email = 'test@test.com';
-
-  const createdUser = await AppDataSource.manager.save(u);
+  const tag2 = new Tag();
+  tag2.name = 'природа';
 
   const post = new Post();
-  post.body = 'Hello World!';
-  post.userId = createdUser.id;
 
+
+  post.body = 'Подорож у гори';
+  post.tags = [tag1, tag2];
+  await AppDataSource.manager.save([tag1, tag2]);
   await AppDataSource.manager.save(post);
 });
