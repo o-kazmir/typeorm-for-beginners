@@ -1,24 +1,12 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  ManyToMany,
-  JoinTable, OneToMany
-} from 'typeorm';
+import { Entity, ManyToMany, JoinTable } from 'typeorm';
 import { Tag } from './tag.entity';
+import { BaseContentEntity } from './abstract/base-content.entity';
 
 @Entity()
-export class Post {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  body: string;
-
+export class Post extends BaseContentEntity {
   @ManyToMany(() => Tag, (tag) => tag.posts)
   @JoinTable({
-    name: 'posts_tags'
+    name: 'posts_tags',
   })
   tags: Tag[];
 }

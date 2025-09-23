@@ -1,11 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne } from 'typeorm';
+import { Entity, Column, OneToOne } from 'typeorm';
 import { User } from './user.entity';
+import { BaseEntity } from './abstract/base.entity';
 
 @Entity()
-export class Profile {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Profile extends BaseEntity {
   @Column()
   phoneNumber: string;
 
