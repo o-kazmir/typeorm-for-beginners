@@ -1,4 +1,9 @@
 import { DataSource } from 'typeorm';
+import { User } from './entities/user.entity';
+import { Profile } from './entities/profile.entity';
+import { Post } from './entities/post.entity';
+import { Comment } from './entities/comment.entity';
+import { Tag } from './entities/tag.entity';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -7,7 +12,8 @@ export const AppDataSource = new DataSource({
   username: 'root',
   password: 'root',
   database: 'beginners_course',
-  synchronize: true,
+  synchronize: false,
   logging: true,
-  entities: [__dirname + '/entities/*.entity.ts'],
+  entities: [User, Profile, Post, Comment, Tag],
+  migrations: [__dirname + '/migrations/*.ts'],
 });
