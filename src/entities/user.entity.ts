@@ -10,6 +10,9 @@ export class User extends BaseEntity {
   @Column()
   email: string;
 
+  @Column()
+  age: number;
+
   @OneToOne(() => Profile, (profile) => profile.user)
   @JoinColumn()
   profile: Profile;
